@@ -1,0 +1,52 @@
+/* ──────────────────────────────────────────────────────────────
+   Shared palette — source of truth for both apps.
+   Mirrors palette.scss at the repo root, expressed as CSS variables.
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Base palette (from palette.scss) */
+  --bronze:        #c27d38;
+  --bronze-spice:  #cd5205;
+  --navy:          #1d047a;
+  --old-lace:      #f9eedf;
+  --black:         #040301;
+
+  /* Derived paper / ink scale shared by both apps */
+  --paper:         #fbf6ea;   /* warmer old-lace, the main bg */
+  --paper-warm:    #f1e7d2;   /* slightly toasted, for cards/sections */
+  --paper-card:    #ffffff;
+  --ink:           #1f2a30;   /* deep slate — warmer than pure black */
+  --ink-soft:      #4f5a60;
+  --ink-faint:     #97a0a4;
+  --rule:          #e2d6bf;   /* warm hairline */
+
+  /* Navy variants — pulled toward the same hue as palette.scss --navy
+     but slightly softened for everyday UI use (links, hover). */
+  --navy-soft:     #3a268f;   /* lighter navy for links */
+  --navy-tint:     #ebe8f5;   /* very pale navy for subtle backgrounds */
+
+  /* Studio-specific tokens — light body with bronze + navy + dark accents.
+     Apps reference these so future re-skinning happens in one place. */
+  --studio-bg:         var(--paper);
+  --studio-bg-soft:    var(--paper-warm);
+  --studio-card:       var(--paper-card);
+  --studio-ink:        var(--ink);
+  --studio-ink-soft:   var(--ink-soft);
+  --studio-ink-faint:  var(--ink-faint);
+  --studio-rule:       var(--rule);
+  --studio-accent:     var(--bronze);
+  --studio-accent-hot: var(--bronze-spice);
+  --studio-blue:       var(--navy);
+  --studio-blue-soft:  var(--navy-soft);
+  --studio-blue-tint:  var(--navy-tint);
+
+  /* Dark chrome — header & footer use this. Also serves as a third
+     accent color (e.g., card top-stripes), bookending the page. */
+  --studio-dark:       #14110d;   /* warm near-black */
+  --studio-dark-soft:  #2a2218;   /* slightly raised for borders */
+  --studio-dark-ink:   #f1e7d2;   /* light text used on the dark chrome */
+  --studio-dark-dim:   #b9ac90;   /* dim text on dark chrome */
+}
+
+/* Fonts: Inter (sans) + Lora (display serif) + JetBrains Mono (mono).
+   Loaded via Google Fonts in each app's index.html. */

@@ -1,0 +1,192 @@
+/* Studio site — light body, dark chrome (header/footer), warm prose.
+   Pulls colors from ./palette.css */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--studio-bg);
+  color: var(--studio-ink);
+  font-family: 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+/* Links — navy by default with a soft underline. */
+a {
+  color: var(--studio-blue-soft);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(58, 38, 143, 0.35);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+a:hover {
+  color: var(--studio-blue);
+  text-decoration-color: var(--studio-blue);
+}
+
+/* Typography */
+.serif { font-family: 'Lora', Georgia, serif; }
+.mono  { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--studio-ink-faint);
+}
+
+h1, h2, h3 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--studio-ink);
+  margin: 0;
+}
+
+p { margin: 0 0 1em; }
+p:last-child { margin-bottom: 0; }
+
+.accent { color: var(--studio-accent); }
+
+/* Buttons — two flavors. Pills, generous padding. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 999px;
+  border: 1.5px solid var(--studio-ink);
+  background: transparent;
+  color: var(--studio-ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover {
+  background: var(--studio-ink);
+  color: var(--studio-bg);
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--studio-accent);
+  border-color: var(--studio-accent);
+  color: var(--paper-card);
+}
+.btn-primary:hover {
+  background: var(--studio-accent-hot);
+  border-color: var(--studio-accent-hot);
+  color: var(--paper-card);
+}
+
+/* Layout containers */
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.container-wide {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section { scroll-margin-top: 88px; }
+
+/* Section dividers — quiet hairline, light side margins so they don't
+   stretch wall-to-wall on wide screens. */
+.rule {
+  border: 0;
+  border-top: 1px solid var(--studio-rule);
+  margin: 72px auto;
+  max-width: 880px;
+}
+
+/* Image placeholders — used until real photos are dropped in. */
+.placeholder {
+  background: var(--studio-bg-soft);
+  border: 1px solid var(--studio-rule);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--studio-ink-faint);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 12px;
+}
+
+/* Cards — used for the three pricing/logistics cards.
+   Each card gets an accent stripe along the top via .card-{accent} */
+.card {
+  background: var(--studio-card);
+  border: 1px solid var(--studio-rule);
+  border-radius: 8px;
+  padding: 24px 22px 22px;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--studio-rule); /* fallback */
+}
+.card.card-bronze::before { background: var(--studio-accent); }
+.card.card-navy::before   { background: var(--studio-blue); }
+.card.card-dark::before   { background: var(--studio-dark); }
+
+/* Header bar — dark chrome, cream text. Mirrors footer. */
+.chrome-dark {
+  background: var(--studio-dark);
+  color: var(--studio-dark-ink);
+}
+.chrome-dark a { color: var(--studio-dark-ink); text-decoration: none; }
+.chrome-dark a:hover { color: var(--studio-accent); }
+
+/* ── mobile ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+  .hero-portrait {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .rates-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .container, .container-wide { padding: 0 20px; }
+  .rule { margin: 56px auto; }
+  .nav-row { padding: 14px 20px !important; }
+  .nav-row .nav-tagline { display: none; }
+  .nav-row .nav-links { gap: 14px !important; font-size: 13px; }
+  .footer-row { padding: 32px 20px 28px !important; flex-direction: column; }
+  .hero-section { padding-top: 56px !important; padding-bottom: 16px !important; }
+}
+
+@media (max-width: 480px) {
+  .btn { padding: 11px 18px; font-size: 14px; }
+  .nav-row .nav-links a:not(.cta) { display: none; }
+}
